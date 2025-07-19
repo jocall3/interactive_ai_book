@@ -1,32 +1,38 @@
-name: Deploy to GitHub Pages
+name: NodeJS with Webpack
 
 on:
   push:
-    branches:
-      - master  # change to main if your default branch is 'main'
+    branches: [ "Master" ]
+  pull_request:
+    branches: [ "Master" ]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ matrix.node-version }}
 
-      - name: Setup environment variables
+      - name: Set up environment variables
         run: echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env.local
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build app
+      - name: Build project
         run: npm run build
 
       - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/Master' && github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
