@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Story Weaver: The O'Callaghan Files</title>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "@google/genai": "https://esm.sh/@google/genai@^1.0.1",
+      "marked": "https://esm.sh/marked@^15.0.12"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/interactive_ai_book/assets/index-CsnHGrYE.js"></script>
+  <link rel="stylesheet" crossorigin href="/interactive_ai_book/assets/index-CfGBlyAD.css">
+</head>
+<body>
+  <div id="app-container">
+    <div id="controls-panel">
+      <h1 id="book-title-display">The O'Callaghan Stratagem</h1>
+      <div id="status-area" role="status" aria-live="polite">Welcome! Embark on a journey into the shadows of high finance.</div>
+      
+      <div id="chat-module">
+        <button id="chat-toggle" aria-expanded="false" aria-controls="chat-panel-content">
+          <span id="chat-toggle-title">Chat with the Stratagem</span>
+          <span class="chat-toggle-icon">▼</span>
+        </button>
+        <div id="chat-panel-content" class="chat-panel-hidden" role="region" aria-labelledby="chat-toggle-title">
+          <div id="chat-history" role="log" aria-live="polite">
+            <!-- Chat messages will appear here -->
+          </div>
+          <div id="chat-input-area">
+            <textarea id="chat-input" placeholder="Ask about the story..." aria-label="Your question about the story"></textarea>
+            <button id="chat-send-button" aria-label="Send question">➤</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="choices-section">
+        <p id="choices-label" class="choices-label-hidden">Choose the path forward:</p>
+        <div id="choices-area" role="radiogroup" aria-labelledby="choices-label">
+          <!-- AI-generated choices will appear here as buttons -->
+        </div>
+      </div>
+      <button id="download-story-button" aria-label="Download the current story as an HTML file">Download Story (HTML)</button>
+      <button id="action-button" aria-label="Start New Stratagem">Start New Stratagem</button>
+    </div>
+    <div id="story-display-panel" aria-live="polite">
+      <div id="story-content">
+        <p class="placeholder-text">The secrets of Citibank Demo Business Inc. and James Burvell O'Callaghan III await your command...</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
