@@ -18,19 +18,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Set up environment variables
+      - name: Create .env.local with secret
         run: echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env.local
 
       - name: Install dependencies
         run: npm install
 
-      - name: Ensure webpack-cli is installed
-        run: npm install --save-dev webpack-cli
+      - name: Install webpack-cli (required by Webpack)
+        run: npm install --no-save webpack-cli
 
-      - name: Build project with Webpack
+      - name: Build with Webpack
         run: npx webpack
