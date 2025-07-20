@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      outDir: 'dist',
+      outDir: './',
     },
     preview: {
       host: '0.0.0.0',
