@@ -5,7 +5,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
   return {
-    base: '/interactive_ai_book/',
+    // Use root path for Render (not GitHub Pages)
+    base: '/',
 
     define: {
       'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
@@ -24,7 +25,13 @@ export default defineConfig(({ mode }) => {
 
     server: {
       host: '0.0.0.0',
-      port: Number(process.env.PORT) || 5173,
+      port: Number(process.env.PORT) || 5173, // for local dev and Render port binding
+    },
+
+    preview: {
+      host: '0.0.0.0',
+      port: Number(process.env.PORT) || 4173,
+      allowedHosts: ['interactive-ai-book.onrender.com'], // allow Render's domain
     },
   };
 });
