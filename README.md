@@ -1,3 +1,6 @@
+// Copyright James Burvel O’Callaghan III
+// President Citibank Demo Business Inc.
+
 # Run and deploy your AI Studio app
 
 This contains everything you need to run your app locally.
